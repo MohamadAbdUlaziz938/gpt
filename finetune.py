@@ -1,5 +1,10 @@
 from gpt_index import SimpleDirectoryReader, GPTSimpleVectorIndex,LLMPredictor,PromptHelper
 from langchain.chat_models import ChatOpenAI
+from langchain.chains  import ChatVectorDBChain
+from langchain.llms import OpenAI
+
+from queryIndex import load_index
+
 def construct_index():
     max_input_size = 4096
     num_outputs = 512
@@ -19,4 +24,11 @@ def save_index():
     output_index.save_to_disk(save_path="indexData/index.json",)
     
 
+def configureLongChain():
+    vectordb=load_index()
+    romeoandjuliet_qa = ChatVectorDBChain.from_llm(OpenAI(temperature=0, model_name="gpt-3.5-turbo"), vectordb, return_source_documents=True)
     
+    result = romeoandjuliet_qa({"question": "Hi", "chat_history": []})
+    print(result)
+
+

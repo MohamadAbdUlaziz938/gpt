@@ -1,7 +1,7 @@
 import os
 
 import yaml
-from finetune import save_index
+from finetune import configureLongChain, save_index
 from queryIndex import load_index, qurey
 if __name__ == '__main__':
     with open('cred.yaml') as f:
@@ -9,10 +9,20 @@ if __name__ == '__main__':
         
     os.environ["OPENAI_API_KEY"] = data["OPENAI_API_KEY"]
     #save_index()
+    #configureLongChain()
+    
     index=load_index()
-    prompt="I'm  machine learning developer"
+    prompt="The following is a conversation with an AI assistant. The assistant is helpful, creative, clever, and very friendly."
+    response=prompt
+    
     while prompt!="exit":
         prompt=input("prompt >> ")
-        response=qurey(txt=prompt,index=index)
-        print(response)
+        txt=response+"\nHuman: "+prompt
+        #print(txt)
+        res=qurey(txt=txt,index=index)
+        if res.response!="Empty Response":
+            response=txt+"\n"+res.response
+
+        #print(f'history: {response}')
+        print(f'{res.response}')
     
