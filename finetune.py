@@ -1,4 +1,4 @@
-from gpt_index import SimpleDirectoryReader, GPTSimpleVectorIndex,LLMPredictor,PromptHelper
+from llama_index  import SimpleDirectoryReader, GPTSimpleVectorIndex,LLMPredictor,PromptHelper
 from langchain.chat_models import ChatOpenAI
 from langchain.chains  import ChatVectorDBChain
 from langchain.llms import OpenAI
@@ -22,6 +22,7 @@ def save_index():
     '''fine tuning '''
     output_index = GPTSimpleVectorIndex.from_documents(documents=loaded_content,)
     output_index.save_to_disk(save_path="indexData/index.json",)
+    return output_index
     
 
 def configureLongChain():

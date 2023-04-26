@@ -3,3 +3,8 @@
 \screenshots
 \indexData
 \.gptenv
+*.json
+*.jsonl
+*.spec
+\build
+\dist
