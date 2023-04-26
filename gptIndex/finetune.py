@@ -30,6 +30,5 @@ def configureLongChain():
     romeoandjuliet_qa = ChatVectorDBChain.from_llm(OpenAI(temperature=0, model_name="gpt-3.5-turbo"), vectordb, return_source_documents=True)
     
     result = romeoandjuliet_qa({"question": "Hi", "chat_history": []})
-    print(result)
 
 
