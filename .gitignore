@@ -8,3 +8,6 @@
 *.spec
 \build
 \dist
+\docs2
+\multi_indexing_data
+\data

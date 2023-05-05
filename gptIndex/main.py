@@ -35,12 +35,11 @@ def user_actions():
                 "3- exit\n")
             action_number = input("Number of action: >> ")
             if action_number == "1":
-                index = save_index()
+                index = save_index(source_data="./gptIndex/sourceData",save_index_to="./gptIndex/indexData/index.json")
             elif action_number == "2":
-                index = load_index()
+                index = load_index(index_path="./gptIndex/indexData/index.json")
                 chat_Ai(index=index)
             elif action_number == "3":
-
                 exit(0)
             else:
                 print("Please enter the correct action number (1,2,3).\n")
@@ -59,7 +58,6 @@ if __name__ == '__main__':
                 print('\nPlease add cred.yaml file:\n')
 
     os.environ["OPENAI_API_KEY"] = data["OPENAI_API_KEY"]
-    #os.environ["OPENAI_API_KEY"] = "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"
     create_directory(name="sourceData")
     create_directory(name="indexData")
     print('\nWelocme to AI assistant:\n')

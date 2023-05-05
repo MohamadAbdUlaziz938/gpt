@@ -17,11 +17,13 @@ def construct_index():
     
     return llm_predictor,prompt_helper
 
-def save_index():
-    loaded_content = SimpleDirectoryReader("sourceData").load_data()
+def save_index(source_data:str,save_index_to:str):
+    loaded_content = SimpleDirectoryReader(source_data).load_data()
+    
     '''fine tuning '''
     output_index = GPTSimpleVectorIndex.from_documents(documents=loaded_content,)
-    output_index.save_to_disk(save_path="indexData/index.json",)
+    
+    output_index.save_to_disk(save_path=save_index_to,)
     return output_index
     
 
